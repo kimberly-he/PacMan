@@ -1,0 +1,41 @@
+#1. Purpose:
+      This assignment's purpose is using differnt and effective algorithms to make ghosts smater to catch the CMPTman.
+            Algorithms should be able to use in all testboards.(So,it can't be an algorithm that ghost move in a fixed route)
+	          
+		  #2. Basic idea:
+		        *1. algorithm 1: Basic function!
+			                                                          
+										                         Initialize possible directions on the exact corresponding position. Delete the impossible direction(BLOCK,our of board).
+													                        For instance,the N is out of board,W is BLOCK,so the initialized direction of this point is [S,E].
+																                                                          
+																							                         It's like a 3-dimension list - road(global variable can use everywhere),stores directions correspongding to the position
+																										                        [ [[0,0],[0,1],...,[0,h]] , [[1,0],[1,1],...,[1,h]] ,..., [[w,0],[w,1],...,[w,h]] ].
+
+																													                       Thus, if we want position(j,k) direction, we type road[j][k].
+																															                                                                 
+																																							       *2. algorithm 2: Linear-chase function.:
+
+																																							                              Suppose ghost move(after initial direction),calculate the linear distance between the CMPTman and the ghost.
+
+																																										                             Append the distance to a list,copy and sort it.
+																																													                         
+																																																                        Find the shortest distance and make that direction move.
+																																																			                                                          
+																																																										                         When multiple ghosts run into each other,turn to function random-chase to separate them!I don't want they just stupid move together.
+																																																													                                                           
+																																																																				         *3. algorithm 3: Random-chase function:
+																																																																					          
+																																																																						                         If ghost number <=2, just do linear-chase function.Since random mode somehow making ghost look lazy.
+																																																																									                                                           
+																																																																																                          If ghost number >=3, choose one ghost to do random-chase function is efficient since it can be a potential threat.
+
+																																																																																			                         Attention: When the distance of CMPTman and ghost < 6 (6 doesn't have special meaning, I just want to choose numbers
+																																																																																						                        indicating CMPTman and ghost are close), ghost should turn to linear-chase function since it sucks if ghost turn back
+																																																																																									                       when it almost can get CMPTman!
+
+																																																																																											       #3. Known problems:
+																																																																																											             *1. I try not to stuck ghost into corner, but it still stupid stuck back and forth instead of resting.
+																																																																																												           *2. Linear-chase is not the beat way to chase, the ghost always think itself close to CMPTman when there actually a wall between them,
+																																																																																													             the best way should be overcome the wall.
+																																																																																														           *3. Multiple ghosts always gather together to move making the chase less efficient and existing.                                                   
+																																																																																															         *4. Prediction is quite difficult especially when the textboard is vary.
